@@ -3,10 +3,11 @@ Copyright (c) 2019-present NAVER Corp.
 MIT License
 """
 
+import cv2
 # -*- coding: utf-8 -*-
 import numpy as np
 from skimage import io
-import cv2
+
 
 def loadImage(img_file):
     img = io.imread(img_file)           # RGB order

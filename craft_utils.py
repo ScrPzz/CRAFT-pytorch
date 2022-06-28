@@ -3,10 +3,11 @@ Copyright (c) 2019-present NAVER Corp.
 MIT License
 """
 
+import math
+
+import cv2
 # -*- coding: utf-8 -*-
 import numpy as np
-import cv2
-import math
 
 """ auxilary functions """
 # unwarp corodinates

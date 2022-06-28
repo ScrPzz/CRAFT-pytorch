@@ -3,31 +3,30 @@ Copyright (c) 2019-present NAVER Corp.
 MIT License
 """
 
+import argparse
+import json
+import os
 # -*- coding: utf-8 -*-
 import sys
-import os
 import time
-import argparse
-
-import torch
-import torch.nn as nn
-import torch.backends.cudnn as cudnn
-from torch.autograd import Variable
-
-from PIL import Image
+import zipfile
+from collections import OrderedDict
 
 import cv2
-from skimage import io
 import numpy as np
-import craft_utils
-import imgproc
-import file_utils
-import json
-import zipfile
+import torch
+import torch.backends.cudnn as cudnn
+import torch.nn as nn
+from PIL import Image
+from skimage import io
+from torch.autograd import Variable
 
+import craft_utils
+import file_utils
+import imgproc
 from craft import CRAFT
 
-from collections import OrderedDict
+
 def copyStateDict(state_dict):
     if list(state_dict.keys())[0].startswith("module"):
         start_idx = 1
@@ -153,13 +152,15 @@ if __name__ == '__main__':
         args.poly = True
 
     t = time.time()
-
+    b_boxes_info={}
     # load data
     for k, image_path in enumerate(image_list):
         print("Test image {:d}/{:d}: {:s}".format(k+1, len(image_list), image_path), end='\r')
         image = imgproc.loadImage(image_path)
 
         bboxes, polys, score_text = test_net(net, image, args.text_threshold, args.link_threshold, args.low_text, args.cuda, args.poly, refine_net)
+
+        b_boxes_info[os.path.basename(os.path.normpath(str(image_path)))]=bboxes.tolist()
 
         # save score text
         filename, file_ext = os.path.splitext(os.path.basename(image_path))
@@ -169,3 +170,6 @@ if __name__ == '__main__':
         file_utils.saveResult(image_path, image[:,:,::-1], polys, dirname=result_folder)
 
     print("elapsed time : {}s".format(time.time() - t))
+
+    with open(f'./{result_folder}/bboxes_infos.json', 'w+') as f:
+        json.dump(b_boxes_info, f)
