@@ -160,7 +160,10 @@ if __name__ == '__main__':
 
         bboxes, polys, score_text = test_net(net, image, args.text_threshold, args.link_threshold, args.low_text, args.cuda, args.poly, refine_net)
 
-        b_boxes_info[os.path.basename(os.path.normpath(str(image_path)))]=bboxes.tolist()
+        if len(bboxes)>1:
+            b_boxes_info[os.path.basename(os.path.normpath(str(image_path)))]=bboxes.tolist()
+        else:
+            b_boxes_info[os.path.basename(os.path.normpath(str(image_path)))]=None
 
         # save score text
         filename, file_ext = os.path.splitext(os.path.basename(image_path))
