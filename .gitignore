@@ -4,6 +4,7 @@
 *.pth
 result*
 weights*
-exxon_imgs 
-exxon_output
+exxon_imgs*
+exxon_output*
+output*
 *.jpg
