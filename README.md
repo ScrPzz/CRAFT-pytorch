@@ -14,6 +14,10 @@ This tool has been created to *isolate text from background in images and read i
 
 
 
+### How to use: 
+
+Open the boxes.ipynb notebook, update the _IMAGE variable with the path of the image you are trying to process and run the full notebook. 
+
 ### Examples: 
 
 See the "Examples" folder.
