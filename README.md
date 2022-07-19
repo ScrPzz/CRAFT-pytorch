@@ -4,7 +4,12 @@ This tool has been created to *isolate text from background in images and read i
 
 - **CRAFT** (https://github.com/clovaai/CRAFT-pytorch) model (actually the repo is a fork of it) used to find the text bounding boxes.
 
-- Boxes processing and **MeanShift clustering** to optimize the isolation of the text area from the background.
+- Boxes processing and **MeanShift clustering** to optimize the isolation of the text area from the background. In this image:
+
+![d464ca93-368a-4a57-aae2-c81329242808](https://user-images.githubusercontent.com/55019419/179762258-42a059d1-e441-46c8-bfc8-04d1d5dbde57.png)
+
+red boxes are produced by CRAFT, blue ones by the clustering.
+
 
 - OCR via both **Pytesseract** the **PaddleOCR** (https://github.com/PaddlePaddle/PaddleOCR). Keeping both at this benchmark stage, most probably will end up using Paddle because it is just so good.
 
