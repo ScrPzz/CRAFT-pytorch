@@ -8,7 +8,7 @@ This tool has been created to *isolate text from background in images and read i
 
 ![d464ca93-368a-4a57-aae2-c81329242808](https://user-images.githubusercontent.com/55019419/179762258-42a059d1-e441-46c8-bfc8-04d1d5dbde57.png)
 
-red boxes are produced by CRAFT, blue ones by the clustering.
+red boxes are produced by CRAFT, blue ones by the clustering. 10 px tolerance added in both directions.
 
 
 - OCR via both **Pytesseract** the **PaddleOCR** (https://github.com/PaddlePaddle/PaddleOCR). Keeping both at this benchmark stage, most probably will end up using Paddle because it is just so good.
